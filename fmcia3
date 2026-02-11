@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIC Financial Management CIA 3</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- 
+    Palette: Royal Finance
+    Primary: #1e3a8a (Deep Blue)
+    Secondary: #d97706 (Gold/Amber)
+    -->
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Timeline Styling */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 4px;
+            background-color: #d97706;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="bg-[#1e3a8a] text-white py-12 px-4 shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-[#d97706] opacity-20"></div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <div class="mb-4 text-[#d97706] font-bold tracking-wider text-sm uppercase">Christ (Deemed to be University) • School of Business and Management</div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-2">LIC: Financial Analysis</h1>
+            <h2 class="text-xl text-gray-300 font-light mb-8">CIA 3 • Financial Management • Guide: Dr. Jigar Rupani</h2>
+            
+            <div class="glass-card rounded-xl p-6 max-w-4xl mx-auto shadow-2xl">
+                <h3 class="text-[#f59e0b] font-bold tracking-widest text-xs uppercase mb-6 border-b border-white/10 pb-2">Assignment Presented By</h3>
+                <div class="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
+                    <div class="group">
+                        <div class="text-lg font-bold text-white group-hover:text-[#f59e0b] transition">SARBOJIT PAUL</div>
+                        <div class="text-gray-300 text-sm bg-[#0f172a]/50 px-3 py-1 rounded mt-1 inline-block">2524215</div>
+                    </div>
+                    <div class="hidden md:block w-px bg-white/30 h-12 self-center"></div>
+                    <div class="group">
+                        <div class="text-lg font-bold text-white group-hover:text-[#f59e0b] transition">UDAY PARTAP SINGH</div>
+                        <div class="text-gray-300 text-sm bg-[#0f172a]/50 px-3 py-1 rounded mt-1 inline-block">2524230</div>
+                    </div>
+                    <div class="hidden md:block w-px bg-white/30 h-12 self-center"></div>
+                    <div class="group">
+                        <div class="text-lg font-bold text-white group-hover:text-[#f59e0b] transition">BHARATH.G</div>
+                        <div class="text-gray-300 text-sm bg-[#0f172a]/50 px-3 py-1 rounded mt-1 inline-block">2524288</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-sm text-gray-400">Course: 2BBA SBA • Campus: Yeshwanthpur</div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 space-y-12">
+
+        <!-- SECTION 1: Company Profile -->
+        <section>
+            <div class="bg-white rounded-lg shadow-md p-8 border-t-4 border-[#d97706]">
+                <h2 class="text-3xl font-bold text-[#1e3a8a] mb-6">1. Company Profile & Market Dominance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            <strong>Life Insurance Corporation (LIC)</strong>, established in 1956 by nationalizing 245 private entities, is India's largest insurer. With a mission to provide affordable insurance to the masses, it operates through a massive network of <strong>13 lakh agents</strong> and 2,048 branch offices.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-4">
+                            Post-IPO, the Government of India retains <strong>96.5% ownership</strong>. LIC continues to dominate the sector despite private competition, holding a majority market share in New Business Premiums.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mt-6">
+                            <div class="bg-blue-50 p-4 rounded text-center border border-blue-100">
+                                <div class="text-2xl font-bold text-[#1e3a8a]">57.1%</div>
+                                <div class="text-xs text-gray-600 uppercase">New Business Premium Share</div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded text-center border border-blue-100">
+                                <div class="text-2xl font-bold text-[#1e3a8a]">65.8%</div>
+                                <div class="text-xs text-gray-600 uppercase">Share of Policies Sold</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-2">Market Share Dominance</h3>
+                        <div class="chart-container">
+                            <canvas id="marketShareChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Timeline -->
+        <section>
+            <h2 class="text-3xl font-bold text-[#1e3a8a] mb-6 pl-4 border-l-8 border-[#d97706]">2. Strategic Milestones</h2>
+            <div class="relative timeline-line pl-4 md:pl-0">
+                <div class="space-y-8 max-w-3xl mx-auto">
+                    <div class="relative flex items-start md:ml-12">
+                        <div class="absolute left-[-29px] md:left-[-52px] bg-[#1e3a8a] h-10 w-10 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow">56</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm w-full ml-4 md:ml-0 hover:shadow-md transition">
+                            <h3 class="font-bold text-lg text-[#d97706]">1956: Inception</h3>
+                            <p class="text-sm text-gray-600">Established with initial capital of ₹5 Crore by nationalizing 245 companies.</p>
+                        </div>
+                    </div>
+                    <div class="relative flex items-start md:ml-12">
+                        <div class="absolute left-[-29px] md:left-[-52px] bg-[#1e3a8a] h-10 w-10 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow">99</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm w-full ml-4 md:ml-0 hover:shadow-md transition">
+                            <h3 class="font-bold text-lg text-[#d97706]">1999-2000: Diversification</h3>
+                            <p class="text-sm text-gray-600">Entry into Mutual Funds and facing first private competition post-liberalization.</p>
+                        </div>
+                    </div>
+                    <div class="relative flex items-start md:ml-12">
+                        <div class="absolute left-[-29px] md:left-[-52px] bg-[#1e3a8a] h-10 w-10 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow">22</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm w-full ml-4 md:ml-0 hover:shadow-md transition">
+                            <h3 class="font-bold text-lg text-[#d97706]">2022: The Mega IPO</h3>
+                            <p class="text-sm text-gray-600">Went public in India's largest IPO. Paid-up capital increased to ₹6,325 Crore.</p>
+                        </div>
+                    </div>
+                    <div class="relative flex items-start md:ml-12">
+                        <div class="absolute left-[-29px] md:left-[-52px] bg-[#1e3a8a] h-10 w-10 rounded-full flex items-center justify-center text-white font-bold z-10 border-4 border-white shadow">25</div>
+                        <div class="bg-white p-5 rounded-lg shadow-sm w-full ml-4 md:ml-0 hover:shadow-md transition">
+                            <h3 class="font-bold text-lg text-[#d97706]">FY 2025: High Profitability</h3>
+                            <p class="text-sm text-gray-600">Shift to high-margin products yields ~9.86% Net Profit Margin and massive asset base.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Capital Structure & WACC -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#1e3a8a] mb-2">3. Capital Structure</h2>
+                <div class="mb-4">
+                    <span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Equity Dominant</span>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">Debt Free (Practical)</span>
+                </div>
+                <p class="text-gray-600 text-sm mb-4">
+                    LIC maintains a unique structure with minimal debt. The Debt-Equity ratio remains extremely low (0.01 - 0.03), relying on internal accruals and policyholder funds.
+                </p>
+                <div class="chart-container">
+                    <canvas id="debtEquityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#1e3a8a] mb-4">4. WACC Analysis</h2>
+                <p class="text-gray-600 text-sm mb-6">
+                    WACC is calculated based on Cost of Equity (CAPM) as debt is negligible. Market WACC is lower than Book WACC, indicating investor confidence.
+                </p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded border-l-4 border-gray-400">
+                        <div>
+                            <div class="font-bold text-gray-700">FY24 Book Value</div>
+                            <div class="text-xs text-gray-500">Cost of Equity Based</div>
+                        </div>
+                        <div class="text-2xl font-bold text-gray-700">13.00%</div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-blue-50 rounded border-l-4 border-[#1e3a8a]">
+                        <div>
+                            <div class="font-bold text-[#1e3a8a]">FY25 Book Value</div>
+                            <div class="text-xs text-gray-500">Rise due to risk/returns</div>
+                        </div>
+                        <div class="text-2xl font-bold text-[#1e3a8a]">15.35%</div>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-amber-50 rounded border-l-4 border-[#d97706]">
+                        <div>
+                            <div class="font-bold text-[#d97706]">FY26 Market Value</div>
+                            <div class="text-xs text-gray-500">Projected lower hurdle rate</div>
+                        </div>
+                        <div class="text-2xl font-bold text-[#d97706]">11.35%</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Profitability Trends -->
+        <section>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <div class="mb-6">
+                    <h2 class="text-3xl font-bold text-[#1e3a8a]">5. Profitability Evolution</h2>
+                    <p class="text-gray-600 mt-2">
+                        A massive transformation in margins. LIC shifted from low-margin/high-volume to high-margin products.
+                        <br><strong>Key Insight:</strong> Net Profit Margin jumped from <strong>0.72% (FY21)</strong> to <strong>9.86% (FY25)</strong>.
+                    </p>
+                </div>
+
+                <div class="chart-container" style="max-width: 900px; height: 400px;">
+                    <canvas id="profitabilityChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Peer Comparison -->
+        <section>
+            <div class="bg-white rounded-lg shadow-md p-8 border-t-4 border-[#d97706]">
+                <h2 class="text-3xl font-bold text-[#1e3a8a] mb-6">6. Peer Comparison (FY25)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-gray-700 mb-4">
+                            <strong>Revenue Scale:</strong> LIC operates on a scale far beyond private peers. Its revenue of ₹4.88 Lakh Crore dwarfs SBI Life's ₹95k Crore.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            <strong>Margin Leader:</strong> Surprisingly, LIC reported a higher Net Profit Margin (9.86%) in FY25 compared to private peers (~2.5%), largely due to accounting changes transferring surplus from policyholder funds.
+                        </p>
+                        <div class="mt-4">
+                            <h4 class="font-bold text-[#1e3a8a] mb-2">FY25 Revenue (₹ Crore)</h4>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex justify-between border-b pb-1"><span>LIC</span> <span class="font-bold">4,88,148</span></li>
+                                <li class="flex justify-between border-b pb-1"><span>SBI Life</span> <span class="font-bold">95,320</span></li>
+                                <li class="flex justify-between border-b pb-1"><span>HDFC Life</span> <span class="font-bold">72,500</span></li>
+                                <li class="flex justify-between border-b pb-1"><span>ICICI Pru</span> <span class="font-bold">51,200</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="peerMarginChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Financial Snapshot -->
+        <section>
+            <div class="bg-white rounded-lg shadow-md p-8">
+                <h2 class="text-3xl font-bold text-[#1e3a8a] mb-6">7. Financial Snapshot (FY25)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-700 mb-4">Balance Sheet Growth</h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left text-gray-500">
+                                <thead class="text-xs text-white uppercase bg-[#1e3a8a]">
+                                    <tr>
+                                        <th class="px-4 py-3">Component</th>
+                                        <th class="px-4 py-3 text-right">FY 2024 (Cr)</th>
+                                        <th class="px-4 py-3 text-right">FY 2025 (Cr)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-4 py-3 font-medium text-gray-900">Share Capital</td>
+                                        <td class="px-4 py-3 text-right">6,325</td>
+                                        <td class="px-4 py-3 text-right">6,325</td>
+                                    </tr>
+                                    <tr class="bg-gray-50 border-b">
+                                        <td class="px-4 py-3 font-medium text-gray-900">Reserves & Surplus</td>
+                                        <td class="px-4 py-3 text-right">75,740</td>
+                                        <td class="px-4 py-3 text-right text-[#d97706] font-bold">1,20,096</td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-4 py-3 font-medium text-gray-900">Policy Liabilities</td>
+                                        <td class="px-4 py-3 text-right">43,95,325</td>
+                                        <td class="px-4 py-3 text-right">47,35,580</td>
+                                    </tr>
+                                    <tr class="bg-gray-100 font-bold border-t-2 border-gray-400">
+                                        <td class="px-4 py-3">TOTAL ASSETS</td>
+                                        <td class="px-4 py-3 text-right">52,22,038</td>
+                                        <td class="px-4 py-3 text-right">55,75,155</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                         <h3 class="text-xl font-bold text-gray-700 mb-4">Application of Funds (FY25)</h3>
+                         <div class="chart-container">
+                             <canvas id="fundsChart"></canvas>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#1e3a8a] text-white py-8 text-center mt-12">
+        <p class="font-bold">CHRIST (Deemed to be University)</p>
+        <p class="text-sm text-gray-300 mt-1">School of Business and Management</p>
+        <p class="text-xs text-gray-400 mt-4">Data extracted from CIA 3 Report • Generated for Academic Purposes</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const splitLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= maxLength) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+
+        const commonTooltipConfig = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        const ctxMarket = document.getElementById('marketShareChart').getContext('2d');
+        new Chart(ctxMarket, {
+            type: 'doughnut',
+            data: {
+                labels: ['LIC (New Business)', 'Private Insurers'],
+                datasets: [{
+                    data: [57.1, 42.9],
+                    backgroundColor: ['#1e3a8a', '#d97706'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltipConfig,
+                    title: { display: true, text: 'New Business Premium Share' }
+                }
+            }
+        });
+
+        const ctxDebt = document.getElementById('debtEquityChart').getContext('2d');
+        new Chart(ctxDebt, {
+            type: 'bar',
+            data: {
+                labels: ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'],
+                datasets: [{
+                    label: 'Debt-Equity Ratio',
+                    data: [0.01, 0.05, 0.04, 0.03, 0.03],
+                    backgroundColor: '#1e3a8a',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, title: {display:true, text: 'Ratio'} }
+                },
+                plugins: {
+                    tooltip: commonTooltipConfig,
+                    title: { display: true, text: 'Ultra-Low Leverage Trend' }
+                }
+            }
+        });
+
+        const ctxProf = document.getElementById('profitabilityChart').getContext('2d');
+        new Chart(ctxProf, {
+            type: 'bar',
+            data: {
+                labels: ['FY21', 'FY22', 'FY23', 'FY24', 'FY25'],
+                datasets: [
+                    {
+                        label: 'Net Profit Margin (%)',
+                        data: [0.72, 0.95, 7.68, 8.56, 9.86],
+                        backgroundColor: '#1e3a8a',
+                        yAxisID: 'y',
+                        order: 2
+                    },
+                    {
+                        label: 'Return on Equity (ROE %)',
+                        data: [45.6, 35.66, 77.71, 49.16, 38.16],
+                        borderColor: '#d97706',
+                        backgroundColor: '#d97706',
+                        type: 'line',
+                        borderWidth: 3,
+                        pointRadius: 4,
+                        yAxisID: 'y1',
+                        order: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Net Profit Margin %' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        title: { display: true, text: 'ROE %' }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltipConfig,
+                    title: { display: true, text: 'Margin Expansion vs ROE' }
+                }
+            }
+        });
+
+        const ctxPeer = document.getElementById('peerMarginChart').getContext('2d');
+        new Chart(ctxPeer, {
+            type: 'bar',
+            data: {
+                labels: ['LIC', 'SBI Life', 'HDFC Life', 'ICICI Pru'],
+                datasets: [{
+                    label: 'Net Profit Margin % (FY25)',
+                    data: [9.86, 2.56, 2.59, 2.43],
+                    backgroundColor: ['#1e3a8a', '#9ca3af', '#9ca3af', '#9ca3af']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    tooltip: commonTooltipConfig,
+                    legend: { display: false },
+                    title: { display: true, text: 'Net Profit Margin Comparison (FY25)' }
+                }
+            }
+        });
+
+        const ctxFunds = document.getElementById('fundsChart').getContext('2d');
+        const fundsData = [5136279, 154597, 127480, 104026];
+        new Chart(ctxFunds, {
+            type: 'pie',
+            data: {
+                labels: ['Policyholder Investments', 'Net Current Assets', 'Loans', 'Shareholder Investments'].map(l => splitLabel(l)),
+                datasets: [{
+                    data: fundsData,
+                    backgroundColor: ['#1e3a8a', '#d97706', '#60a5fa', '#f59e0b']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltipConfig
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
